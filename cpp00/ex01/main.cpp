@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:19:54 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/17 20:36:01 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/19 06:26:26 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,21 @@
 
 int main()
 {
-    PhoneBook book;
-    
-    book.addContact();
-    book.searchContact();
+	PhoneBook	book;
+	std::string	buff;
+	
+	while (86)
+	{
+		std::cout << "Enter a command: ";
+		getline(std::cin, buff);
+		if (buff == "ADD")
+			book.addContact();
+		else if (buff == "SEARCH")
+			book.searchContact();
+		else if (buff == "EXIT")
+			exit(0);
+		else
+			std::cout << "Unrecognized command. use ADD, SEARCH or EXIT" << std::endl;
+			
+	}
 }

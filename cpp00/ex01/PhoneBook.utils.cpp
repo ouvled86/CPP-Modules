@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.utils.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 19:54:52 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/17 20:42:04 by codespace        ###   ########.fr       */
+/*   Updated: 2025/03/19 07:06:46 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ void    get_str(std::string &buff, std::string str)
     }
 }
 
-std::string resizeString(std::string)
+std::string resizeString(std::string s)
+{
+    if(s.length() > 10)
+        return (s.substr(0,9) += ".");
+    return (s);
+}
