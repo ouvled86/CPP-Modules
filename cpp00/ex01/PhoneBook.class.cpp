@@ -6,7 +6,7 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 18:20:08 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/19 07:01:19 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/03/21 02:43:08 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void    PhoneBook::addContact(void) {
 }
 
 void    PhoneBook::searchContact(void) {
-    std::string index;
+    std::string buff;
     
     if (this->list[0].getFirstName() == "N/A") {
         std::cout << "Phonebook is empty, add a new contact using the ADD command" << std::endl;
@@ -71,19 +71,30 @@ void    PhoneBook::searchContact(void) {
         }
     }
     std::cout << "Enter contact's ID for more information: ";
-    getline(std::cin, index);
-    while ((atoi(index.c_str()) < 1 || atoi(index.c_str()) > 8) || this->list[atoi(index.c_str()) - 1].getFirstName() == "N/A") {
-        if (atoi(index.c_str()) < 1 || atoi(index.c_str()) > 8)
+    if (!getline(std::cin, buff)) {
+        if (buff.empty()) {
+            std::cout << std::endl << "Input error or EOF detected. Exiting search." << std::endl;
+            return;
+        }
+    }
+    int index = buff[0] - '0';
+    while (std::cin.eof() || buff.length() > 1 || (index < 1 || index > 8) || this->list[index - 1].getFirstName() == "N/A") {
+        if (buff.length() > 1 || index < 1 || index > 8)
             std::cout << "IDs range is from 1 to 8." << std::endl;
-        else
+        else if (this->list[index - 1].getFirstName() == "N/A")
             std::cout << "Contact is empty." << std::endl;
         std::cout << "Enter contact's ID for more information: ";
-        getline(std::cin, index);
+        getline(std::cin, buff);
+        if (std::cin.eof()) {
+                std::cout << std::endl << "Input error or EOF detected. Exiting search." << std::endl;
+                return;
+        }
+        index = buff[0] - '0';
     }
-    std::cout << "First name     : " << this->list[atoi(index.c_str()) - 1].getFirstName() << std::endl;
-    std::cout << "Last name      : " << this->list[atoi(index.c_str()) - 1].getLastName() << std::endl;
-    std::cout << "Nickname       : " << this->list[atoi(index.c_str()) - 1].getNickName() << std::endl;
-    std::cout << "Number         : " << this->list[atoi(index.c_str()) - 1].getNum() << std::endl;
-    std::cout << "Darkest Secret : " << this->list[atoi(index.c_str()) - 1].getSecret() << std::endl;
+    std::cout << "First name     : " << this->list[index - 1].getFirstName() << std::endl;
+    std::cout << "Last name      : " << this->list[index - 1].getLastName() << std::endl;
+    std::cout << "Nickname       : " << this->list[index - 1].getNickName() << std::endl;
+    std::cout << "Number         : " << this->list[index - 1].getNum() << std::endl;
+    std::cout << "Darkest Secret : " << this->list[index - 1].getSecret() << std::endl;
     return ;
 }
