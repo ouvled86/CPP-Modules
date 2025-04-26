@@ -6,7 +6,7 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 08:01:25 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/03/21 01:08:36 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/03/21 02:57:59 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,9 @@ void	Account::_displayTimestamp( void ) {
     char buffer[20];
     std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S]", now_tm);
     std::cout << buffer << " ";
+}
+
+Account::Account( void )
+{
+	return;
 }
