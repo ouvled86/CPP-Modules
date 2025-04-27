@@ -6,7 +6,7 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:35:59 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/27 15:09:50 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/04/27 15:47:45 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	apcArea = absVal(a.getXVal() * (point.getYVal() - c.getYVal()) + point.getXVal() * (c.getYVal() - a.getYVal()) + c.getXVal() * (a.getYVal() - point.getYVal())) / 2;
 	pbcArea = absVal(point.getXVal() * (b.getYVal() - c.getYVal()) + b.getXVal() * (c.getYVal() - point.getYVal()) + c.getXVal() * (point.getYVal() - b.getYVal())) / 2;
 	total = abpArea + apcArea + pbcArea;
-	if (total == triangleArea)
+	if (total == triangleArea && abpArea && apcArea && pbcArea)
 		return (true);
 	return (false);
 }
