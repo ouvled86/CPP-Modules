@@ -6,11 +6,13 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 06:43:59 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/26 07:33:34 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:08:35 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::Bits = 8;
 
 Fixed::Fixed()
 {

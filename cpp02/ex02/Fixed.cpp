@@ -6,12 +6,14 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 06:43:59 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/27 12:22:13 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/15 10:19:15 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
+
+const int Fixed::Bits = 8;
 
 Fixed::Fixed()
 {
@@ -33,15 +35,12 @@ Fixed::Fixed(const float value)
 
 Fixed::Fixed(const Fixed& original)
 {
-	
 	std::cout << "Copy constructor called" << '\n';
 	this->Value = original.getRawBits();
-	
 }
 
 Fixed&	Fixed::operator=(const Fixed& original)
 {
-	
 	std::cout << "Copy assignment operator called" << '\n';
 	if (this != &original)
 		this->Value = original.getRawBits();
@@ -50,147 +49,115 @@ Fixed&	Fixed::operator=(const Fixed& original)
 
 Fixed	Fixed::operator+(const Fixed& original)
 {
-
 	Fixed	ret;
 
 	ret.Value = this->Value + original.Value;
 	return (ret);
-	
 }
 
 Fixed	Fixed::operator-(const Fixed& original)
 {
-	
 	Fixed	ret;
-	
+
 	ret.Value = this->Value - original.Value;
 	return (ret);
-	
 }
 
 Fixed	Fixed::operator*(const Fixed& original)
 {
-	
 	Fixed	ret;
-	
+
 	ret.Value = this->Value * original.Value;
 	return (ret);
-	
 }
 
 Fixed	Fixed::operator/(const Fixed& original)
 {
-		
 	Fixed	ret;
-	
+
 	ret.Value = this->Value / original.Value;
 	return (ret);
-
 }
 
 bool	Fixed::operator>(const Fixed& original)
 {
-
 	if (this->getRawBits() > original.getRawBits())
 		return (true);
 	return (false);
-
 }
 
 bool	Fixed::operator<(const Fixed& original)
 {
-
 	if (this->getRawBits() < original.getRawBits())
 		return (true);
 	return (false);
-
 }
 
 bool	Fixed::operator>=(const Fixed& original)
 {
-	
 	if (this->getRawBits() >= original.getRawBits())
 		return (true);
 	return (false);
-	
 }
 bool	Fixed::operator<=(const Fixed& original)
 {
-	
 	if (this->getRawBits() <= original.getRawBits())
 		return (true);
 	return (false);
-	
 }
 
 bool	Fixed::operator==(const Fixed& original)
 {
-	
 	if (this->getRawBits() == original.getRawBits())
 		return (true);
 	return (false);
-	
 }
 
 bool	Fixed::operator!=(const Fixed& original)
 {
-	
 	if (this->getRawBits() != original.getRawBits())
 		return (true);
 	return (false);
-	
 }
 
 Fixed&	Fixed::operator++(void)
 {
-	
 	this->Value++;
 	return (*this);
 }
 
 Fixed&	Fixed::operator--(void)
 {
-	
 	this->Value--;
 	return (*this);
-	
 }
 
-Fixed	Fixed::operator++(const int original)
+Fixed	Fixed::operator++(int)
 {
-	
 	Fixed	copy(*this);
 	this->Value++;
 	return (copy);
-	
 }
 
-Fixed	Fixed::operator--(const int original)
+Fixed	Fixed::operator--(int)
 {
-	
-	int	copy = this->Value;
+	Fixed	copy(*this);
 	this->Value--;
 	return (copy);
-	
 }
 
 Fixed&	Fixed::min(Fixed &first, Fixed &second)
 {
-	
 	if (first.getRawBits() > second.getRawBits())
 		return (second);
 	return (first);
-
 }
 
 Fixed&	Fixed::max(Fixed &first, Fixed &second)
 {
-	
 	if (first.getRawBits() > second.getRawBits())
 		return (first);
 	return (second);
-	
-	
 }
 
 const Fixed&	Fixed::min(const Fixed &first, const Fixed &second)
@@ -201,19 +168,16 @@ const Fixed&	Fixed::min(const Fixed &first, const Fixed &second)
 	if (first.getRawBits() > second.getRawBits())
 		return (second);
 	return (first);
-
 }
 
 const Fixed&	Fixed::max(const Fixed &first, const Fixed &second)
 {
-	
 	Fixed firstCopy(first);
 	Fixed secondCopy(second);
-	
+
 	if (first.getRawBits() > second.getRawBits())
 		return (first);
 	return (second);
-	
 }
 
 Fixed::~Fixed()
@@ -244,14 +208,14 @@ int	Fixed::toInt( void ) const
 	return this->Value >> this->Bits;
 }
 
-std::ostream&	operator<<(std::ostream& cout, Fixed& original)
+std::ostream&	operator<<(std::ostream& coutref, Fixed& original)
 {
-	cout << original.toFloat();
-	return cout;	
+	coutref << original.toFloat();
+	return coutref;
 }
 
-std::ostream&	operator<<(std::ostream& cout, const Fixed& original)
+std::ostream&	operator<<(std::ostream& coutref, const Fixed& original)
 {
-	cout << original.toFloat();
-	return cout;	
+	coutref << original.toFloat();
+	return coutref;
 }

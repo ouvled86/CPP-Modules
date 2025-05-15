@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:53:05 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/03 15:34:40 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:31:13 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 #include <string>
 #include <iostream>
 
-class   HumanA {
-
+class	HumanA {
 private:
-    std::string name;
-    Weapon      &wpn;
+	std::string	name;
+	Weapon		&wpn;
 
 public:
-    HumanA( std::string humanName, Weapon humanWeapon);
-    ~HumanA( void );
-    void    attack( void ) const;
-
+	HumanA( std::string humanName, Weapon& humanWeapon);
+	~HumanA( void );
+	void		attack( void ) const;
 };

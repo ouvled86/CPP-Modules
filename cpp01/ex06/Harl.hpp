@@ -6,7 +6,7 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:59:47 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/04 15:05:20 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/12 09:24:02 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 #include <iostream>
 
-class   Harl {
+class	Harl {
 
 private:
-    void    debug( void );
-    void    info( void );
-    void    warning( void );
-    void    error( void );
-    
+	void	debug( void );
+	void	info( void );
+	void	warning( void );
+	void	error( void );
+	
 public:
-    void    complain( int level );
-    void    filter( std::string level );
+	void	complain( int level );
+	void	filter( std::string level );
 
 };
 

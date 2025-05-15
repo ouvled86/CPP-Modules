@@ -6,7 +6,7 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 13:30:29 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/26 09:14:26 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/15 10:19:29 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ class Fixed {
 
 private:
 	int					Value;
-	static const int	Bits = 8;
+	static const int	Bits;
 
 public:
 	Fixed();
@@ -32,5 +32,5 @@ public:
 
 };
 
-std::ostream&	operator<<(std::ostream& cout, Fixed& original);
-std::ostream&	operator<<(std::ostream& cout, const Fixed& original);
+std::ostream&	operator<<(std::ostream& coutref, Fixed& original);
+std::ostream&	operator<<(std::ostream& coutref, const Fixed& original);

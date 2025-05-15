@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:12:58 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/03 15:41:39 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:48:11 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,24 @@
 #include <iostream>
 
 int main() {
+	{
+		Weapon club = Weapon("crude spiked club");
 
-    Weapon  knife("Military Knife");
-    HumanA  meowski("Meowski", knife);
-    HumanB  meower("Meower");
-
-    meowski.attack();
-    meower.attack();
-
+		HumanA bob("Bob", club);
+		
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon club = Weapon("crude spiked club");
+		
+		HumanB jim("Jim");
+		jim.setWeapon(&club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
+	
+	return 0;
 }

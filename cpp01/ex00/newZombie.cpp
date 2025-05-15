@@ -6,15 +6,13 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:36:28 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/02 15:33:59 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/12 10:07:07 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
 Zombie *newZombie( std::string name ) {
-    
-    return new Zombie(name);
-
+	return new Zombie(name);
 }
 

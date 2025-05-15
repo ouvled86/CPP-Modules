@@ -6,12 +6,14 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 06:43:59 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/26 09:17:17 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:13:23 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
+
+const int Fixed::Bits = 8;
 
 Fixed::Fixed()
 {
@@ -28,7 +30,7 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 {
 	std::cout << "Float constructor called" << '\n';
-	this->Value = roundf(value * (1 << this->Bits));
+	this->Value = roundf(value * (float)(1 << this->Bits));
 }
 
 Fixed::Fixed(const Fixed& original)
@@ -58,7 +60,7 @@ int	Fixed::getRawBits(void) const
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << '\n';
+	// std::cout << "setRawBits member function called" << '\n';
 	this->Value = raw;
 }
 
@@ -73,14 +75,14 @@ int	Fixed::toInt( void ) const
 	return this->Value >> this->Bits;
 }
 
-std::ostream&	operator<<(std::ostream& cout, Fixed& original)
+std::ostream&	operator<<(std::ostream& coutref, Fixed& original)
 {
-	cout << original.toFloat();
-	return cout;	
+	coutref << original.toFloat();
+	return coutref;	
 }
 
-std::ostream&	operator<<(std::ostream& cout, const Fixed& original)
+std::ostream&	operator<<(std::ostream& coutref, const Fixed& original)
 {
-	cout << original.toFloat();
-	return cout;	
+	coutref << original.toFloat();
+	return coutref;	
 }

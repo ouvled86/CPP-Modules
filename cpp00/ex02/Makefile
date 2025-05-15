@@ -1,20 +1,15 @@
 CC =	c++
 
-RM =	rm -f
-
 FLAGS =	-Wall -Wextra -Werror -std=c++98
 
-SRCS =	main.cpp \
-		bsp.cpp \
-		Point.cpp \
-		Fixed.cpp
+SRCS =	tests.cpp \
+		Account.cpp
 
 OBJS =	$(SRCS:.cpp=.o)
 
-HPPS =	Fixed.hpp \
-		Point.hpp
+HPPS =	Account.hpp
 
-NAME =	BSP
+NAME =	Logs
 
 all: $(NAME)
 
@@ -25,9 +20,9 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -c $<
 
 clean:
-	$(RM) $(OBJS)
+	rm -f $(OBJS)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	rm -f $(OBJS) $(NAME)
 
 re: fclean all

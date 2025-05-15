@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:40:22 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/03 15:21:54 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:36:10 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,23 @@
 #include <string>
 
 Weapon::Weapon( void ) {
-
-    return ;
-
+	return ;
 }
 
 Weapon::Weapon ( const std::string& wName ) : type(wName) {
-
-    return ;
-
+	return ;
 }
 
 Weapon::~Weapon ( void ) {
-
-    return ;
-
+	return ;
 }
 
-const std::string&  Weapon::getType( void ) const {
-
-    return this->type;
-
+const std::string&	Weapon::getType( void ) const {
+	return this->type;
 }
 
-void    Weapon::setType( const std::string& newType ) {
-
-    this->type = newType;
-    return ;
-
+void	Weapon::setType( const std::string& newType ) {
+	this->type = newType;
+	return ;
 }
 

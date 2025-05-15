@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 15:00:39 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/04/03 15:41:08 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:32:46 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@
 #include <string>
 #include <iostream>
 
-class   HumanB {
-
+class	HumanB {
 private:
-    std::string name;
-    Weapon      *wpn;
+	std::string	name;
+	Weapon		*wpn;
 
 public:
-    HumanB( void );
-    HumanB( std::string humanName );
-    ~HumanB( void );
-    void    attack( void ) const;
-    void    setWeapon( Weapon newWpn );
-
+	HumanB( void );
+	HumanB( std::string humanName );
+	~HumanB( void );
+	void		attack( void ) const;
+	void		setWeapon( Weapon *newWpn );
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:24:46 by codespace         #+#    #+#             */
-/*   Updated: 2025/03/07 18:21:27 by codespace        ###   ########.fr       */
+/*   Updated: 2025/05/08 13:38:43 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	main(int ac, char **av)
 		if (!isspace(av[i][j - 1]) && i < ac - 1 && !isspace(av[i + 1][0]))
 			cStr += ' ';
 	}
-	std::cout << cStr << std::endl;
+	std::cout << cStr << '\n';
 }
