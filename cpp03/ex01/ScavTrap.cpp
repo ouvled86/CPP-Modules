@@ -1,89 +1,63 @@
 #include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
 #include <iostream>
 
 // Default constructor
-ScavTrap::ScavTrap(void) : ClapTrap(void)
+ScavTrap::ScavTrap(void)
 {
-  std::cout << "Derived class' default constructor called" << std::endl;
-  return ;
+	std::cout << "ScavTrap's default constructor called" << std::endl;
+	this->Name = "N/A";
+	this->Type = "ScavTrap";
+	this->HitPts = 100;
+	this->EnergyPts = 50;
+	this->AttackDmg = 20;
+	return ;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other.Name)
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 {
-  std::cout << "Named constructor called" << std::endl;
-  this->Name = name;
-  this->HitPts = 10;
-  this->EnergyPts = 10;
-  this->AttackDmg = 0;
-  return ;
+	std::cout << "ScavTrap's named constructor called" << std::endl;
+	this->Type = "ScavTrap";
+	this->HitPts = 100;
+	this->EnergyPts = 50;
+	this->AttackDmg = 20;
+	return ;
 }
 
 // Copy constructor
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other.Name)
 {
-  std::cout << "Copy constructor called" << std::endl;
-  this->HitPts = other.HitPts;
-  this->EnergyPts = other.EnergyPts;
-  this->AttackDmg = other.AttackDmg;
-  return ;
+	std::cout << "ScavTrap's copy constructor called" << std::endl;
+	this->Type = other.Type;
+	this->HitPts = other.HitPts;
+	this->EnergyPts = other.EnergyPts;
+	this->AttackDmg = other.AttackDmg;
+	return ;
 }
 
 // Assignment operator overload
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
-    std::cout << "Assignment operator called" << std::endl;
-  this->Name = other.Name;
-  this->HitPts = other.HitPts;
-  this->EnergyPts = other.EnergyPts;
-  this->AttackDmg = other.AttackDmg;
-  return (*this);
+	std::cout << "ScavTrap's assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		this->Name = other.Name;
+		this->Type = other.Type;
+		this->HitPts = other.HitPts;
+		this->EnergyPts = other.EnergyPts;
+		this->AttackDmg = other.AttackDmg;
+	}
+	return (*this);
 }
 
 // Destructor
 ScavTrap::~ScavTrap(void)
 {
-    std::cout << "Destructor called" << std::endl;
-    return ;
+	std::cout << "ScavTrap's destructor called" << std::endl;
+	return ;
 }
 
-void  ClapTrap::attack(const std::string& target)
+void	ScavTrap::guardGate()
 {
-  if (this->EnergyPts > 0)
-  {
-    std::cout << "ClapTrap " << this->Name << " attacks " << target << ", causing " << this->AttackDmg << " points of damage!" << '\n';
-    this->EnergyPts--;
-  }
-  else {
-    std::cout << "ClapTrap " << this->Name << " doesn't have enough energy points to attack " << target << '!' << '\n';
-  }
-  return ;
+	std::cout << this->Type << " " << this->Name << " is now in gate keeper mode" << '\n';
+	return ;
 }
-
-void  ClapTrap::takeDamage(unsigned int amount)
-{
-  if (this->HitPts > 0)
-  {
-    std::cout << "ClapTrap " << this->Name << " takes " << amount << " amount of damage!" << '\n';
-    this->HitPts -= amount;
-  }
-  else {
-    std::cout << "ClapTrap " << this->Name << " is already destroyed and can't take any damage!" << '\n';
-  }
-  return ;
-}
-
-void  ClapTrap::beRepaired(unsigned int amount)
-{
-  if (this->EnergyPts > 0)
-  {
-    std::cout << "ClapTrap " << this->Name << " has repaired itself and gained " << amount << " amount of hit points!" << '\n';
-    this->EnergyPts--;
-    this->HitPts += amount;
-  }
-  else {
-    std::cout << "ClapTrap " << this->Name << " doesn't have enough energy points to repair itself!" << '\n';
-  }
-  return ;
-}
-
