@@ -11,6 +11,7 @@ protected:
 	int			HitPts;
 	int			EnergyPts;
 	int			AttackDmg;
+
 public:
 	ClapTrap(void);
 	ClapTrap(const std::string& name);

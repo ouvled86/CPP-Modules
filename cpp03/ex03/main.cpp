@@ -1,17 +1,19 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-	FragTrap robot1 ("Rebecca");
-	FragTrap robot2 ("David");
-	FragTrap robot3 ("Kiwi");
+	DiamondTrap robot1 ("Rebecca");
+	DiamondTrap robot2 ("David");
+	DiamondTrap robot3 ("Kiwi");
 
-	for (size_t i = 0; i < 51; i++)
+	for (size_t i = 0; i < 26; i++)
 	{
 		robot1.attack(robot2);
 		robot2.beRepaired(30);
-		robot2.attack(robot1);
+		robot2.attack("Rebecca");
 		robot1.beRepaired(30);
 	}
-	robot3.highFivesGuys();
+	robot3.whoAmI();
+	robot2.whoAmI();
+	robot1.whoAmI();
 }

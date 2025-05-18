@@ -12,7 +12,7 @@ SRCS =	main.cpp \
 
 OBJS =	$(SRCS:.cpp=.o)
 
-HPPS =	ClapTrap.hpp
+HPPS =	ClapTrap.hpp \
 		FragTrap.hpp \
 		DiamondTrap.hpp \
 		ScavTrap.hpp
