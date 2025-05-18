@@ -5,7 +5,7 @@
 ClapTrap::ClapTrap(void)
 {
 	std::cout << "ClapTrap's default constructor called" << std::endl;
-	this->Name = "Unnamed Claptrap";
+	this->Name = "N/A";
 	this->Type = "ClapTrap";
 	this->HitPts = 10;
 	this->EnergyPts = 10;
@@ -36,7 +36,7 @@ ClapTrap::ClapTrap(const ClapTrap &other) : Name(other.Name)
 }
 
 // Assignment operator overload
-ClapTrap &ClapTrap::operator=(const ClapTrap &other)
+ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
 {
 	std::cout << "ClapTrap's assignment operator called" << std::endl;
 	this->Name = other.Name;
@@ -54,7 +54,7 @@ ClapTrap::~ClapTrap(void)
 	return ;
 }
 
-void  ClapTrap::attack(const std::string& target)
+void	ClapTrap::attack(const std::string& target)
 {
 	if (this->EnergyPts > 0)
 	{
@@ -66,7 +66,7 @@ void  ClapTrap::attack(const std::string& target)
 	return ;
 }
 
-void  ClapTrap::takeDamage(unsigned int amount)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->HitPts > 0)
 	{

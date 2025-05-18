@@ -35,7 +35,7 @@ ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other.Name)
 }
 
 // Assignment operator overload
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+ScavTrap	&ScavTrap::operator=(const ScavTrap &other)
 {
 	std::cout << "ScavTrap's assignment operator called" << std::endl;
 	if (this != &other)
