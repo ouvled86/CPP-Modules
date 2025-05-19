@@ -61,3 +61,40 @@ void	ScavTrap::guardGate()
 	std::cout << this->Type << " " << this->Name << " is now in gate keeper mode" << '\n';
 	return ;
 }
+
+void	ScavTrap::attack(const std::string& target)
+{
+	if (this->HitPts <= 0)
+	{
+		std::cout << this->Type << " " << this->Name << " is destroyed and can't shoot target: " << target << '!' << '\n';
+		return ;
+	}
+	if (this->EnergyPts > 0)
+	{
+		std::cout << this->Type << " " << this->Name << " aims at " << target << ", and sprays it with bullets causing " << this->AttackDmg << " points of damage!" << '\n';
+		this->EnergyPts--;
+	}
+	else
+		std::cout << this->Type << " " << this->Name << " doesn't have enough energy points to attack " << target << '!' << '\n';
+	return ;
+}
+
+void	ScavTrap::attack(ScavTrap& target)
+{
+	if (this->HitPts <= 0)
+	{
+		std::cout << this->Type << " " << this->Name << " is destroyed and can't shoot target: " << target.Name << '!' << '\n';
+		return ;
+	}
+	if (this->EnergyPts > 0 && target.HitPts > 0)
+	{
+		std::cout << this->Type << " " << this->Name << " aims at " << target.Name << ", and sprays it with bullets causing " << this->AttackDmg << " points of damage!" << '\n';
+		target.takeDamage(this->AttackDmg);
+		this->EnergyPts--;
+	}
+	else if (target.HitPts <= 0)
+		std::cout << this->Type << " " << this->Name << " tries to attack " << target.Name << " only to find that it is already destroyed, what an easy target!" << '\n';
+	else
+		std::cout << this->Type << " " << this->Name << " doesn't have enough energy points to attack " << target.Name << '!' << '\n';
+	return ;
+}

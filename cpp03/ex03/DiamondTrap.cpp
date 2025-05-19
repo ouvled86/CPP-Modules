@@ -72,7 +72,7 @@ void	DiamondTrap::attack(const std::string& target)
 	return ;
 }
 
-void	DiamondTrap::attack(ClapTrap& target)
+void	DiamondTrap::attack(ScavTrap& target)
 {
 	ScavTrap::attack(target);
 	return ;
