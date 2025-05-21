@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:44:55 by ouvled            #+#    #+#             */
-/*   Updated: 2025/05/21 12:13:29 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/05/21 13:07:38 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 Dog::Dog(void)
 {
 	std::cout << "Dog's default constructor called" << std::endl;
+	this->brain = new Brain();
 	this->type = "Dog";
 	return ;
 }
@@ -24,7 +25,11 @@ Dog::Dog(void)
 Dog::Dog(const Dog &other) : Animal()
 {
 	std::cout << "Dog's copy constructor called" << std::endl;
+	int	size = other.brain->getSize();
 	this->type = other.type;
+	this->brain = new Brain();
+	for (int i = 0; i < size; i++)
+		this->brain->addIdea(other.brain->getIdea(i));
 	return ;
 }
 
@@ -32,7 +37,14 @@ Dog::Dog(const Dog &other) : Animal()
 Dog	&Dog::operator=(const Dog &other)
 {
 	std::cout << "Dog's assignment operator called" << std::endl;
-	this->type = other.type;
+	if (this != &other)
+	{
+		int	size = other.brain->getSize();
+		this->type = other.type;
+		this->brain = new Brain();
+		for (int i = 0; i < size; i++)
+			this->brain->addIdea(other.brain->getIdea(i));
+	}
 	return (*this);
 }
 
@@ -40,6 +52,7 @@ Dog	&Dog::operator=(const Dog &other)
 Dog::~Dog(void)
 {
 	std::cout << "Dog's destructor called" << std::endl;
+	delete this->brain;
 	return ;
 }
 

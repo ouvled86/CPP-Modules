@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 11:45:18 by ouvled            #+#    #+#             */
-/*   Updated: 2025/05/21 12:12:53 by ouvled           ###   ########.fr       */
+/*   Created: 2025/05/21 11:44:58 by ouvled            #+#    #+#             */
+/*   Updated: 2025/05/21 12:57:08 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-# define WRONGCAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 # include <iostream>
-# include "WrongAnimal.hpp"
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-class WrongCat : public WrongAnimal
+class Dog : public Animal
 {
-public:
-	WrongCat(void);
-	WrongCat(const WrongCat& other);
-	WrongCat	&operator=(const WrongCat &other);
-	~WrongCat();
-	void		makeSound();
+private:
+	Brain	*brain;
 
+public:
+	Dog(void);
+	Dog(const Dog& other);
+	Dog		&operator=(const Dog &other);
+	~Dog();
+	void	makeSound();
 };
 
 #endif

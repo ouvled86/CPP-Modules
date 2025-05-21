@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:44:58 by ouvled            #+#    #+#             */
-/*   Updated: 2025/05/21 11:44:59 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/05/21 12:57:16 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ public:
 	Dog		&operator=(const Dog &other);
 	~Dog();
 	void	makeSound();
-
 };
 
 #endif

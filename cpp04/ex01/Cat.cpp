@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:44:50 by ouvled            #+#    #+#             */
-/*   Updated: 2025/05/21 12:57:59 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/05/21 13:14:15 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 Cat::Cat(void)
 {
 	std::cout << "Cat's default constructor called" << std::endl;
+	this->brain = new Brain();
 	this->type = "Cat";
 	return ;
 }
@@ -24,7 +25,11 @@ Cat::Cat(void)
 Cat::Cat(const Cat &other) : Animal()
 {
 	std::cout << "Cat's copy constructor called" << std::endl;
+	int	size = other.brain->getSize();
 	this->type = other.type;
+	this->brain = new Brain();
+	for (int i = 0; i < size; i++)
+		this->brain->addIdea(other.brain->getIdea(i));
 	return ;
 }
 
@@ -32,7 +37,15 @@ Cat::Cat(const Cat &other) : Animal()
 Cat	&Cat::operator=(const Cat &other)
 {
 	std::cout << "Cat's assignment operator called" << std::endl;
-	this->type = other.type;
+	if (this != &other)
+	{
+		this->type = other.type;
+		delete this->brain;
+		int	size = other.brain->getSize();
+		this->brain = new Brain();
+		for (int i = 0; i < size; i++)
+			this->brain->addIdea(other.brain->getIdea(i));
+	}
 	return (*this);
 }
 
@@ -40,6 +53,7 @@ Cat	&Cat::operator=(const Cat &other)
 Cat::~Cat(void)
 {
 	std::cout << "Cat's destructor called" << std::endl;
+	delete this->brain;
 	return ;
 }
 
