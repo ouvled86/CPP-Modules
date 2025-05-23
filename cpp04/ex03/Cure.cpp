@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:47 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:48 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:53:29 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ Cure::~Cure(void)
 	return ;
 }
 
-Cure	*Cure::clone() const
+AMateria	*Cure::clone() const
 {
-	std::cout << "Meow" << std::endl;
-	Cure *ret = new Cure;
+	Cure *ret = new Cure();
 	return (ret);
 }
 

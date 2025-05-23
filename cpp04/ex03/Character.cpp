@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:40 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:41 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 22:20:25 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "Ice.hpp"
 
 // Default constructor
 Character::Character(void) : Name("N/A")
 {
 	// std::cout << "Character's default constructor called" << std::endl;
-	// std::cout << "Address of Slots[0] is: " << this->Slots[0] << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->Slots[i] = NULL;
 	col	= NULL;
-	// std::cout << "After assignment. Address of Slots[0] is: " << this->Slots[0] << std::endl;
 	return ;
 }
 
@@ -28,34 +27,31 @@ Character::Character(std::string const& name) : Name(name)
 {
 	// std::cout << "Character's default constructor called" << std::endl;
 	col	= NULL;
+	for (int i = 0; i < 4; i++)
+		this->Slots[i] = NULL;
 	return ;
 }
 
 // Copy constructor
-Character::Character(const Character &other) : Name(other.Name)
+Character::Character(const Character &other) : ICharacter(), Name(other.Name)
 {
-	// std::cout << "Character's copy constructor called" << std::endl;
-	col	= NULL;
-	for (int i = 0; i < 4; i++)
-	{
-		if (other.Slots[i] && this->Slots[i]) {
-			std::cout << "allo2" << std::endl;
+    col = NULL;
+    for (int i = 0; i < 4; i++)
+    {
+        this->Slots[i] = NULL;
+        if (other.Slots[i])
 			this->Slots[i] = other.Slots[i]->clone();
-		}
-		else
-			this->Slots[i] = NULL;
-
-	}
-	return ;
+    }
+    return;
 }
 
 // Assignment operator overload
 Character	&Character::operator=(const Character &other)
 {
 	// std::cout << "Character's assignment operator called" << std::endl;
-	col	= NULL;
 	if (this != &other)
 	{
+	    col	= NULL;
 		this->Name = other.Name;
 		for (int i = 0; i < 4; i++)
 		{
@@ -64,8 +60,10 @@ Character	&Character::operator=(const Character &other)
 				delete this->Slots[i];
 				this->Slots[i] = NULL;
 			}
-			// if (other.Slots[i])
-				// this->Slots[i] = other.Slots[i]->clone();
+            else
+                this->Slots[i] = NULL;
+			if (other.Slots[i])
+				this->Slots[i] = other.Slots[i]->clone();
 		}
 	}
 	return (*this);
@@ -76,7 +74,6 @@ Character::~Character(void)
 {
 	// std::cout << "Character's destructor called" << std::endl;
 	this->freeMemory();
-	std::cout << this->Name << std::endl;
 	return ;
 }
 
@@ -99,9 +96,9 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
-	if (this->Slots[idx])
+	if ((idx >= 0 && idx <= 3) && this->Slots[idx])
 	{
-		this->insertNode(this->Slots[idx]);
+		this->col = this->insertNode(this->Slots[idx]);
 		this->Slots[idx] = NULL;
 	}
 }
@@ -109,26 +106,34 @@ void	Character::unequip(int idx)
 void	Character::use(int idx, ICharacter& target)
 {
 	if ((idx >= 0 && idx <= 3) && this->Slots[idx])
-		this->Slots[idx]->AMateria::use(target);
+		this->Slots[idx]->use(target);
 }
 
-void	Character::insertNode(AMateria *m)
+Node	*Character::insertNode(AMateria *m)
 {
 	Node	*tmp = this->col;
 
-	while (tmp)
-		tmp = tmp->next;
-	tmp = new Node;
-	tmp->m = m;
-	tmp->next = NULL;
+    if (!this->col)
+    {
+        this->col = new Node;
+        this->col->m = m;
+        this->col->next = NULL;
+        return this->col;
+    }
+    while (this->col->next)
+       this->col = this->col->next;
+    this->col->next = new Node;
+	this->col->next->m = m;
+    this->col->next->next = NULL;
+    return (tmp);
 }
 
 void	Character::freeMemory(void)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		// if (this->Slots[i])
-		// 	delete this->Slots[i];
+       if (this->Slots[i])
+           delete this->Slots[i];
 	}
 	Node	*tmp;
 	while(this->col)
@@ -139,3 +144,4 @@ void	Character::freeMemory(void)
 		delete tmp;
 	}
 }
+

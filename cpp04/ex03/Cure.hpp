@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:50 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:51 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:42:28 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Cure(const Cure& other);
 	Cure	&operator=(const Cure &other);
 	~Cure();
-	Cure*	clone() const;
+	virtual AMateria*	clone() const;
 	void	use(ICharacter& target);
 };
 

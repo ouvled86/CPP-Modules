@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:55 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:56 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:42:19 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Ice(const Ice& other);
 	Ice		&operator=(const Ice &other);
 	~Ice();
-	Ice*	clone() const;
+	virtual AMateria*	clone() const;
 	void	use(ICharacter& target);
 };
 

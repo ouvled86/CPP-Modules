@@ -29,7 +29,7 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $^ -o $@
 
 %.o: %.cpp $(HPPS)
-	$(CC) $(FLAGS) -c $<
+	$(CC) -g $(FLAGS) -c $<
 
 clean:
 	$(RM) $(OBJS)

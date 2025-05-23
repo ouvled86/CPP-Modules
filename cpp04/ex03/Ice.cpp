@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:52 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:53 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:17:04 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ Ice::~Ice(void)
 	return ;
 }
 
-Ice	*Ice::clone() const
+AMateria	*Ice::clone() const
 {
-	return (new Ice);
+	AMateria	*ret = new Ice();
+	return (ret);
 }
 
 void	Ice::use(ICharacter& target)

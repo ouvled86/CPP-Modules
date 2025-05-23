@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:30 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:31 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 20:46:18 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,4 @@ void	AMateria::use(ICharacter& target)
 	(void)target;
 	return ;
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:12:06 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:12:07 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:11:58 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ MateriaSource::MateriaSource(const MateriaSource &other)
 {
 	// std::cout << "MateriaSource's copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		this->Srcs[i] = other.Srcs[i]->clone();
+		if (other.Srcs[i])
+			this->Srcs[i] = other.Srcs[i]->clone();
 	return ;
 }
 
@@ -40,6 +41,7 @@ MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 		{
 			if (this->Srcs[i])
 				delete this->Srcs[i];
+			this->Srcs[i] = NULL;
 			if (other.Srcs[i])
 				this->Srcs[i] = other.Srcs[i]->clone();
 		}

@@ -6,7 +6,7 @@
 /*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:11:44 by ouel-bou          #+#    #+#             */
-/*   Updated: 2025/05/23 14:11:45 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:13:18 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ public:
 	void				equip(AMateria* m);
 	void				unequip(int idx);
 	void				use(int idx, ICharacter& target);
-	void				insertNode(AMateria *m);
+	Node*				insertNode(AMateria *m);
 	void				freeMemory(void);
 };
 
