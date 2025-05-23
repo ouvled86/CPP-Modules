@@ -14,7 +14,7 @@ AMateria::AMateria(std::string const& type) : Type(type)
 }
 
 // Copy constructor
-AMateria::AMateria(const AMateria &other) : Type(other.type)
+AMateria::AMateria(const AMateria &other) : Type(other.Type)
 {
 	std::cout << "AMateria's copy constructor called" << std::endl;
 	(void) other;
@@ -40,4 +40,3 @@ std::string const & AMateria::getType() const
 {
 	return(this->Type);
 }
-
