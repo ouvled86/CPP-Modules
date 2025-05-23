@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 11:45:01 by ouvled            #+#    #+#             */
-/*   Updated: 2025/05/21 13:36:12 by ouvled           ###   ########.fr       */
+/*   Created: 2025/05/21 11:44:47 by ouvled            #+#    #+#             */
+/*   Updated: 2025/05/21 12:11:32 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
+# include <iostream>
+# include <string>
 
-int main()
+class Animal
 {
-	Animal	*animals[20];
-	
-  for (int i = 0; i < 10; i++)
-    animals[i] = new Dog();
-  for (int i = 10; i < 20; i++)
-    animals[i] = new Cat();
-  for (int i = 0; i < 20; i++)
-    delete animals[i];
-}
+protected:
+	std::string		type;
+
+public:
+	Animal(void);
+	Animal(const Animal& other);
+	Animal			&operator=(const Animal &other);
+	virtual ~Animal();
+	virtual void	makeSound() = 0;
+};
+
+#endif
 

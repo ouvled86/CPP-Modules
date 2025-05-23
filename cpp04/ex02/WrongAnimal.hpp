@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 11:45:01 by ouvled            #+#    #+#             */
-/*   Updated: 2025/05/21 13:36:12 by ouvled           ###   ########.fr       */
+/*   Created: 2025/05/21 11:45:10 by ouvled            #+#    #+#             */
+/*   Updated: 2025/05/21 12:18:27 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
+# include <iostream>
+# include <string>
 
-int main()
+class WrongAnimal
 {
-	Animal	*animals[20];
-	
-  for (int i = 0; i < 10; i++)
-    animals[i] = new Dog();
-  for (int i = 10; i < 20; i++)
-    animals[i] = new Cat();
-  for (int i = 0; i < 20; i++)
-    delete animals[i];
-}
+protected:
+	std::string	type;
+
+public:
+	WrongAnimal(void);
+	WrongAnimal(const WrongAnimal& other);
+	WrongAnimal	&operator=(const WrongAnimal &other);
+	virtual ~WrongAnimal();
+	void		makeSound();
+
+};
+
+#endif
 

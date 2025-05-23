@@ -5,7 +5,7 @@ RM =	rm -f
 FLAGS =	-Wall -Wextra -Werror -std=c++98
 
 SRCS =	main.cpp \
-		Animal.cpp \
+		AAnimal.cpp \
 		Brain.cpp \
 		WrongAnimal.cpp \
 		Cat.cpp \
@@ -14,14 +14,14 @@ SRCS =	main.cpp \
 
 OBJS =	$(SRCS:.cpp=.o)
 
-HPPS =	Animal.hpp \
+HPPS =	AAnimal.hpp \
 		Brain.hpp \
 		WrongAnimal.hpp \
 		Cat.hpp \
 		WrongCat.hpp \
 		Dog.hpp
 
-NAME =	IDWTSTWOF
+NAME = AClass
 
 all: $(NAME)
 
