@@ -32,7 +32,9 @@ Cure::~Cure(void)
 
 Cure	*Cure::clone() const
 {
-	return (new Cure);
+	std::cout << "Meow" << std::endl;
+	Cure *ret = new Cure;
+	return (ret);
 }
 
 void	Cure::use(ICharacter& target)

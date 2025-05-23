@@ -26,10 +26,13 @@ Character::Character(const Character &other) : Name(other.Name)
 	col	= NULL;
 	for (int i = 0; i < 4; i++)
 	{
-		if (other.Slots[i])
+		if (other.Slots[i] && this->Slots[i]) {
+			std::cout << "allo2" << std::endl;
 			this->Slots[i] = other.Slots[i]->clone();
+		}
 		else
 			this->Slots[i] = NULL;
+
 	}
 	return ;
 }
@@ -49,8 +52,8 @@ Character	&Character::operator=(const Character &other)
 				delete this->Slots[i];
 				this->Slots[i] = NULL;
 			}
-			if (other.Slots[i])
-				this->Slots[i] = other.Slots[i]->clone();
+			// if (other.Slots[i])
+				// this->Slots[i] = other.Slots[i]->clone();
 		}
 	}
 	return (*this);
@@ -61,6 +64,7 @@ Character::~Character(void)
 {
 	// std::cout << "Character's destructor called" << std::endl;
 	this->freeMemory();
+	std::cout << this->Name << std::endl;
 	return ;
 }
 
@@ -92,8 +96,8 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (this->Slots[idx])
-		this->Slots[idx]->use(target);
+	if ((idx >= 0 && idx <= 3) && this->Slots[idx])
+		this->Slots[idx]->AMateria::use(target);
 }
 
 void	Character::insertNode(AMateria *m)
@@ -111,8 +115,8 @@ void	Character::freeMemory(void)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->Slots[i])
-			delete this->Slots[i];
+		// if (this->Slots[i])
+		// 	delete this->Slots[i];
 	}
 	Node	*tmp;
 	while(this->col)
