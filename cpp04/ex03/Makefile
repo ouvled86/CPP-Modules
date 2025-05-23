@@ -5,23 +5,23 @@ RM =	rm -f
 FLAGS =	-Wall -Wextra -Werror -std=c++98
 
 SRCS =	main.cpp \
-		AAnimal.cpp \
-		Brain.cpp \
-		WrongAnimal.cpp \
-		Cat.cpp \
-		WrongCat.cpp \
-		Dog.cpp
+		AMateria.cpp \
+		Character.cpp \
+		Cure.cpp \
+		Ice.cpp \
+		MateriaSource.cpp
 
 OBJS =	$(SRCS:.cpp=.o)
 
-HPPS =	AAnimal.hpp \
-		Brain.hpp \
-		WrongAnimal.hpp \
-		Cat.hpp \
-		WrongCat.hpp \
-		Dog.hpp
+HPPS =	AMateria.hpp \
+		Character.hpp \
+		Cure.hpp \
+		Ice.hpp \
+		ICharacter.hpp \
+		IMateriaSource.hpp \
+		MateriaSource.hpp
 
-NAME = AClass
+NAME = Interfaces
 
 all: $(NAME)
 

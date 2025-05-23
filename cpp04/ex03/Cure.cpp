@@ -1,16 +1,16 @@
 #include "Cure.hpp"
 
 // Default constructor
-Cure::Cure(void) : AMateria("ice")
+Cure::Cure(void) : AMateria("cure")
 {
-	std::cout << "Cure's default constructor called" << std::endl;
+	// std::cout << "Cure's default constructor called" << std::endl;
 	return ;
 }
 
 // Copy constructor
-Cure::Cure(const Cure &other) : AMateria("ice")
+Cure::Cure(const Cure &other) : AMateria("cure")
 {
-	std::cout << "Cure's copy constructor called" << std::endl;
+	// std::cout << "Cure's copy constructor called" << std::endl;
 	(void) other;
 	return ;
 }
@@ -18,7 +18,7 @@ Cure::Cure(const Cure &other) : AMateria("ice")
 // Assignment operator overload
 Cure	&Cure::operator=(const Cure &other)
 {
-	std::cout << "Cure's assignment operator called" << std::endl;
+	// std::cout << "Cure's assignment operator called" << std::endl;
 	(void) other;
 	return (*this);
 }
@@ -26,7 +26,7 @@ Cure	&Cure::operator=(const Cure &other)
 // Destructor
 Cure::~Cure(void)
 {
-	std::cout << "Cure's destructor called" << std::endl;
+	// std::cout << "Cure's destructor called" << std::endl;
 	return ;
 }
 
