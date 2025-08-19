@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -18,28 +19,14 @@
 
 int main( void )
 {
-	Bureaucrat	B1("Meow King", 1);
-	Bureaucrat	B2("Meow Boss", 5);
-	Bureaucrat	B3("Stray Meow", 130);
+	Intern	ghost;
+	AForm	*ghostsForm;
+	Bureaucrat	MeowKing("Meowsta", 1);
 
-	AForm		*F1 = new PresidentialPardonForm("Meowster");
-	AForm		*F2 = new RobotomyRequestForm("Meowstang");
-	AForm		*F3 = new ShrubberyCreationForm("Meowski");
+	ghostsForm = ghost.makeForm("crip walk permission", "meowster");
+	ghostsForm = ghost.makeForm("shrubbery creation", "meowster");
 
-	std::cout << "\n" << *F1 << *F2 << *F3 << std::endl;
-	B1.signForm(*F1);
-	B1.signForm(*F2);
-	B1.signForm(*F3);
-	B1.signForm(*F3);
-	std::cout << std::endl;
-
-	B3.executeForm(*F1);
-	B2.executeForm(*F1);
-	B2.executeForm(*F2);
-	B2.executeForm(*F2);
-	B2.executeForm(*F2);
-	B2.executeForm(*F2);
-	B3.executeForm(*F3);
-
-	std::cout << "\n";
+	MeowKing.signForm(*ghostsForm);
+	MeowKing.executeForm(*ghostsForm);
+	delete ghostsForm;
 }
