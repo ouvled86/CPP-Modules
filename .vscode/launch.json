@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug C++ Project",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cpp05/ex02/28Bnot28C",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cpp05/ex02",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ]
+}
