@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 16:55:36 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/09 20:11:52 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/09/10 20:41:05 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &other)
 
 void	BitcoinExchange::printData(void) const
 {
-	// Loop over _input, check for errors. If no errors, find corresponding element 
-	// in _data and calculate rate * value then print it
-	// algo: lower_bound()
 	std::vector<std::pair<std::string, float> >::const_iterator	it = this->_input.begin();
 	std::map<std::string, float>::const_iterator				it2;
 	
@@ -108,6 +105,11 @@ std::vector<std::pair<std::string, float> >	parseInput(std::ifstream &input)
 	std::string::iterator						it;
 
 	std::getline(input, buff);
+	if (buff != "date | value")
+	{
+		std::cerr << "Error: incorrect input format." <<std::endl;
+		exit(300);
+	}
 	while (std::getline(input, buff))
 	{
 		it = buff.begin();
@@ -124,7 +126,6 @@ std::vector<std::pair<std::string, float> >	parseInput(std::ifstream &input)
 			p.first = "BAD_FORMAT";
 		if (!buff.empty())
 			ret.push_back(p);
-		// std::cout << "Pair's data: " << buff << " - pair's amount: " << p.second << std::endl;
 	}
 	return (ret);
 }
@@ -174,10 +175,6 @@ bool	badFormat(std::string::iterator s)
 			return (true);
 		s++;
 	}
-	if ((year < 1970 || year > 2022) || (month < 1 || month > 12) || (day < 1 || day > 31))
-		return (true);
-	if ((year == 2022 && month > 3) || (year == 2022 && month == 3 && day > 29))
-		return (true);
 
 	return (false);
 }

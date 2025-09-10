@@ -5,35 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 16:55:43 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/10 17:48:03 by ouvled           ###   ########.fr       */
+/*   Created: 2025/09/10 17:41:05 by ouvled            #+#    #+#             */
+/*   Updated: 2025/09/10 18:01:36 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-#include <fstream>
+#include "RPN.hpp"
 
 int main(int ac, char **av)
 {
-	if (ac != 2) {
-		std::cerr << "Error: bad usage. (./btc \"<FILE_NAME>\")" << std::endl;
+	if (ac != 2)
+	{
+		std::cerr << "Error: bad usage. (./RPN \"<RPN_EXPRESSION\")" << std::endl;
 		return 100;
 	}
 
-	std::ifstream	data("data.csv");
-	if ( !data ) {
-		std::cerr << "Error: couldn't open data file. " << std::endl;
+	std::string	input(av[1]);
+	if (badInput(input))
+	{
+		std::cerr << "Error: bad input." << std::endl;
 		return 200;
 	}
 
-	std::ifstream	input(av[1]);
-	if ( !input ) {
-		std::cerr << "Error: couldn't open input file. " << std::endl;
-		return 201;
-	}
-
-	BitcoinExchange	btc(data, input);
-	btc.printData();
-
-	return 0;
+	RPN	calculator(input);
+	calculator.evaluate();
+	calculator.printResult();
 }
