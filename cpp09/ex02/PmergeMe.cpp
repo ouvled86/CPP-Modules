@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 16:30:08 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/14 19:04:18 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/09/16 17:07:09 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,80 @@ PmergeMe	&PmergeMe::operator=(const PmergeMe &other)
 {
 	(void) other;
 	return (*this);
+}
+
+std::deque<int>	halfAndSort(std::deque<int> cnt1, std::deque<std::pair<int, int> > pairs, size_t size)
+{
+	for (size_t i = 0; i < size - 1; i += 2)
+		pairs.push_back(std::make_pair(cnt1[i], cnt1[i + 1]));
+	
+	for (std::deque<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	{
+		if ((*it).first > (*it).second)
+			std::swap((*it).first, (*it).second);
+	}
+
+	std::deque<int>	ret;
+	for (std::deque<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	{
+		ret.push_back((*it).second);
+	}
+	if (size % 2)
+		ret.push_back(cnt1[size - 1]);
+
+	return (ret);
+}
+
+void	PmergeMe::sortDeque(void)
+{
+	std::deque<std::pair<int, int> >	pairs;
+	std::deque<int>						mainChain;
+	std::deque<int>						largeElements;
+	size_t								size = this->_cnt1.size();
+	// int									extra = -1;
+
+	if (largeElements.size() <= 1) return ;
+	if (largeElements.size() == 2)
+	{
+		
+	}
+	largeElements = halfAndSort(this->_cnt1, pairs, size);
+	int j = 1;
+	std::cout << "Size is: " << largeElements.size() << std::endl;
+	for (std::deque<int>::iterator it = largeElements.begin(); it != largeElements.end(); it++)
+	{
+		std::cout << "Large element at pos " << j << ": " << *it << std::endl;
+		j++;
+	}
+	// for (size_t i = 0; i < size - 1; i += 2)
+	// 	pairs.push_back(std::make_pair(this->_cnt1[i], this->_cnt1[i + 1]));
+	// if (size % 2)
+	// 	extra = this->_cnt1[size - 1];
+	// if (extra != -1)
+	// 	std::cout << "B extra: " << extra << std::endl;
+}
+
+void	PmergeMe::sortList(void)
+{
+	
+}
+
+void	PmergeMe::printInfo(void)
+{
+	std::deque<int>::iterator it = this->_cnt1.begin();
+	std::deque<int>::iterator ite = this->_cnt1.end();
+	std::cout << "Sequence before sorting: ";
+	while (it != ite - 1)
+		std::cout << *it << " ";
+	std::cout << *it << std::endl;
+	std::cout << "Sequence after sorting: ";
+	it = this->_cnt2.begin();
+	ite = this->_cnt2.end();
+	while (it != ite - 1)
+		std::cout << *it << " ";
+	std::cout << *it << std::endl;
+	std::cout << "Time to process a range of " << this->_cnt1.size() << " elements with std::deque : " << this->_stopWatchDeque << " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_cnt1.size() << " elements with std::list : " << this->_stopWatchList << " us" << std::endl;
 }
 
 std::string	mergeInput(char **av, int count)

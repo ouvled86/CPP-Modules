@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 16:29:46 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/14 19:04:08 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/09/16 17:08:29 by ouel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <deque>
 # include <list>
+// # include <utility> 
 # include <climits>
 # include <cstdlib>
 
@@ -28,7 +29,7 @@ public:
 	PmergeMe		&operator=(const PmergeMe &other);
 	void			sortDeque(void);
 	void			sortList(void);
-	void			printInfo(void) const;
+	void			printInfo(void);
 private:
 	std::deque<int>	_cnt1;
 	std::deque<int>	_cnt2;
