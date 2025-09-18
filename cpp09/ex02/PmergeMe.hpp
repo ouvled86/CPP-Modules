@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouel-bou <ouel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 16:29:46 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/16 17:08:29 by ouel-bou         ###   ########.fr       */
+/*   Updated: 2025/09/17 21:29:37 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ class PmergeMe
 {
 public:
 	PmergeMe(void);
+	PmergeMe(std::deque<int> cnt);
 	PmergeMe(std::string &input);
 	PmergeMe(const PmergeMe& other);
 	~PmergeMe();
 	PmergeMe		&operator=(const PmergeMe &other);
-	void			sortDeque(void);
-	void			sortList(void);
 	void			printInfo(void);
+	std::deque<int>	getCnt1(void) { return this->_cnt1; }
 private:
 	std::deque<int>	_cnt1;
 	std::deque<int>	_cnt2;
@@ -41,6 +41,8 @@ private:
 std::string			mergeInput(char **av, int count);
 bool				badInput(std::string::iterator it, std::string::iterator it2);
 void				parseInput(std::deque<int> &cnt, std::string::iterator it, std::string::iterator it2, std::string::iterator ite);
+void				sortDeque(std::deque<int> &container);
+void				sortList(std::list<int> container);
 
 #endif
 

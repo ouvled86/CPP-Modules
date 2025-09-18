@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 16:31:30 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/14 19:01:34 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/09/17 20:45:59 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main(int ac, char **av)
 	}
 	std::string	input = mergeInput(av, ac);
 	PmergeMe	PM(input);
-	PM.sortDeque();
 	// PM.sortDeque();
 	// PM.printInfo();
 }
