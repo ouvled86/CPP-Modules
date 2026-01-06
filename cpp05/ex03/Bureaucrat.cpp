@@ -73,18 +73,18 @@ int	Bureaucrat::getGrade( void ) const
 	return (this->grade);
 }
 
-void	Bureaucrat::incrementGrade( int amount )
+void	Bureaucrat::incrementGrade( void )
 {
-	if (this->grade - amount < 1)
+	if (this->grade - 1 < 1)
 		throw Bureaucrat::GradeTooHighException();
-	this->grade -= amount;
+	this->grade -= 1;
 }
 
-void	Bureaucrat::decrementGrade( int amount )
+void	Bureaucrat::decrementGrade( void )
 {
-	if (this->grade + amount > 150)
+	if (this->grade + 1 > 150)
 		throw Bureaucrat::GradeTooLowException();
-	this->grade += amount;
+	this->grade += 1;
 }
 
 void	Bureaucrat::signForm( AForm &form )
@@ -122,7 +122,7 @@ void	Bureaucrat::executeForm( AForm const &form )
 	std::cout << this->name << " executed " << form.getName() << std::endl;
 }
 
-std::ostream&	operator<<( std::ostream& COUT, Bureaucrat &brct )
+std::ostream&	operator<<( std::ostream& COUT, const Bureaucrat &brct )
 {
 	COUT << brct.getName() << ", bureaucrat grade " << brct.getGrade();
 	return COUT;

@@ -8,7 +8,7 @@ Form::Form(void) : name("Unnamed"), isSigned(0), signGrade(150), execGrade(150)
 }
 
 // Named Constructor
-Form::Form(std::string Name, int SignGrade, int ExecGrade) : name(Name), signGrade(SignGrade), execGrade(ExecGrade)
+Form::Form(const std::string &Name, int SignGrade, int ExecGrade) : name(Name), signGrade(SignGrade), execGrade(ExecGrade)
 {
 	std::cout << "Named constructor called" << std::endl;
 	if (SignGrade < 1 || ExecGrade < 1)
@@ -50,39 +50,38 @@ const char*	Form::GradeTooLowException::what() const throw()
 	return ("Exception: the grade is too low!");
 }
 
-const std::string	&Form::getName( void )
+const std::string	&Form::getName( void ) const
 {
 	return this->name;
 }
 
-bool	Form::getIsSigned( void )
+bool	Form::getIsSigned( void ) const
 {
 	return this->isSigned;
 }
 
-int	Form::getSignGrade( void )
+int	Form::getSignGrade( void ) const
 {
 	return this->signGrade;
 }
 
-int	Form::getExecGrade( void )
+int	Form::getExecGrade( void ) const
 {
 	return this->execGrade;
 }
 
-void	Form::beSigned( Bureaucrat &brct )
+void	Form::beSigned( const Bureaucrat &brct )
 {
-	// std::cout << "Signed grade: " << this->signGrade << "Brct grade: " << brct.getGrade() << std::endl;
 	if (this->signGrade < brct.getGrade())
 		throw Form::GradeTooLowException();
 	this->isSigned = true;
 }
 
-std::ostream&	operator<<(std::ostream& COUT, Form &form)
+std::ostream&	operator<<(std::ostream& COUT, const Form &form)
 {
 	if (form.getIsSigned() == true)
-		COUT << form.getName() << ", required sign grade is: " << form.getSignGrade() << ", required execution grade is: " << form.getExecGrade() << ", is signed!" << std::endl;
+		COUT << form.getName() << ", required sign grade is: " << form.getSignGrade() << ", required execution grade is: " << form.getExecGrade() << ", is signed!";
 	else
-		COUT << form.getName() << ", required sign grade is: " << form.getSignGrade() << ", required execution grade is: " << form.getExecGrade() << ", is not signed!" << std::endl;
+		COUT << form.getName() << ", required sign grade is: " << form.getSignGrade() << ", required execution grade is: " << form.getExecGrade() << ", is not signed!";
 	return COUT;
 }

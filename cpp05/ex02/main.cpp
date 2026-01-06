@@ -42,4 +42,8 @@ int main( void )
 	B3.executeForm(*F3);
 
 	std::cout << "\n";
+
+	delete F1;
+	delete F2;
+	delete F3;
 }

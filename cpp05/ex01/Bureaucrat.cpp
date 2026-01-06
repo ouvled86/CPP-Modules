@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 11:10:35 by ouvled            #+#    #+#             */
-/*   Updated: 2025/08/14 12:39:59 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/12/29 15:50:57 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Bureaucrat::Bureaucrat(void) : name("N/A"), grade(150)
 }
 
 // Named constructor
-Bureaucrat::Bureaucrat(std::string Name, int Grade) : name(Name)
+Bureaucrat::Bureaucrat(const std::string &Name, int Grade) : name(Name)
 {
 	std::cout << "Named constructor called" << std::endl;
 	if (Grade > 150)
@@ -63,28 +63,28 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Exception: the grade is too low!");
 }
 
-const std::string	&Bureaucrat::getName( void )
+const std::string	&Bureaucrat::getName( void ) const
 {
 	return (this->name);
 }
 
-int	Bureaucrat::getGrade( void )
+int	Bureaucrat::getGrade( void ) const
 {
 	return (this->grade);
 }
 
-void	Bureaucrat::incrementGrade( int amount )
+void	Bureaucrat::incrementGrade( void )
 {
-	if (this->grade - amount < 1)
+	if (this->grade - 1 < 1)
 		throw Bureaucrat::GradeTooHighException();
-	this->grade -= amount;
+	this->grade -= 1;
 }
 
-void	Bureaucrat::decrementGrade( int amount )
+void	Bureaucrat::decrementGrade( void )
 {
-	if (this->grade + amount > 150)
+	if (this->grade + 1 > 150)
 		throw Bureaucrat::GradeTooLowException();
-	this->grade += amount;
+	this->grade += 1;
 }
 
 void	Bureaucrat::signForm( Form &form )
@@ -103,7 +103,7 @@ void	Bureaucrat::signForm( Form &form )
 	std::cout << this->getName() << " signed " << form.getName() << std::endl;
 }
 
-std::ostream&	operator<<(std::ostream& COUT, Bureaucrat &brct)
+std::ostream&	operator<<(std::ostream& COUT, const Bureaucrat &brct)
 {
 	COUT << brct.getName() << ", bureaucrat grade " << brct.getGrade();
 	return COUT;

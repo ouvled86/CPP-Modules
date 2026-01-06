@@ -15,7 +15,7 @@ private:
 
 public:
 	Form(void);
-	Form(std::string Name, int SignGrade, int ExecGrade);
+	Form(const std::string &Name, int SignGrade, int ExecGrade);
 	Form(const Form& other);
 	Form &operator=(const Form &other);
 	~Form();
@@ -27,13 +27,13 @@ public:
 	{
 		virtual const char* what() const throw();
 	};
-	const std::string	&getName( void );
-	bool				getIsSigned( void );
-	int					getSignGrade( void );
-	int					getExecGrade( void );
-	void				beSigned( Bureaucrat &brct );
+	const std::string	&getName( void ) const;
+	bool				getIsSigned( void ) const;
+	int					getSignGrade( void ) const;
+	int					getExecGrade( void ) const;
+	void				beSigned( const Bureaucrat &brct );
 };
-std::ostream&			operator<<(std::ostream& COUT, Form &form);
+std::ostream&			operator<<(std::ostream& COUT, const Form &form);
 
 #endif
 

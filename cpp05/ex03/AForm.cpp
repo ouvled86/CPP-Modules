@@ -75,7 +75,7 @@ int	AForm::getExecGrade( void ) const
 	return this->execGrade;
 }
 
-void	AForm::beSigned( Bureaucrat &brct )
+void	AForm::beSigned( const Bureaucrat &brct )
 {
 	// std::cout << "Signed grade: " << this->signGrade << "Brct grade: " << brct.getGrade() << std::endl;
 	if (this->signGrade < brct.getGrade())
@@ -83,7 +83,7 @@ void	AForm::beSigned( Bureaucrat &brct )
 	this->isSigned = true;
 }
 
-std::ostream&	operator<<(std::ostream& COUT, AForm &form)
+std::ostream&	operator<<(std::ostream& COUT, const AForm &form)
 {
 	if (form.getIsSigned() == true)
 		COUT << form.getName() << ", required sign grade is: " << form.getSignGrade() << ", required execution grade is: " << form.getExecGrade() << ", is signed!" << std::endl;

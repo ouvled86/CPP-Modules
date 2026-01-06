@@ -39,11 +39,11 @@ public:
 	};
 	const std::string	&getName( void ) const;
 	int					getGrade( void ) const;
-	void				incrementGrade( int amount );
-	void				decrementGrade( int amount );
+	void				incrementGrade( void );
+	void				decrementGrade( void );
 	void				signForm( AForm &form );
 	void				executeForm(AForm const &form);
 };
-std::ostream&			operator<<( std::ostream& COUT, Bureaucrat &brct );
+std::ostream&			operator<<( std::ostream& COUT, const Bureaucrat &brct );
 
 #endif

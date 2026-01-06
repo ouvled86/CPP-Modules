@@ -35,10 +35,10 @@ public:
 	bool				getIsSigned( void ) const;
 	int					getSignGrade( void ) const;
 	int					getExecGrade( void ) const;
-	void				beSigned( Bureaucrat &brct );
+	void				beSigned( const Bureaucrat &brct );
 	virtual void		execute(Bureaucrat const & executor) const = 0;
 };
-std::ostream&			operator<<(std::ostream& COUT, AForm &form);
+std::ostream&			operator<<(std::ostream& COUT, const AForm &form);
 
 #endif
 

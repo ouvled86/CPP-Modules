@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 11:10:31 by ouvled            #+#    #+#             */
-/*   Updated: 2025/08/14 11:10:32 by ouvled           ###   ########.fr       */
+/*   Updated: 2025/12/29 15:39:31 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ private:
 
 public:
 	Bureaucrat(void);
-	Bureaucrat(std::string Name, int Grade);
+	Bureaucrat(const std::string &Name, int Grade);
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat			&operator=(const Bureaucrat &other);
 	~Bureaucrat();
@@ -34,11 +34,11 @@ public:
 	{
 		virtual const char* what() const throw();
 	};
-	const std::string	&getName( void );
-	int					getGrade( void );
-	void				incrementGrade( int amount );
-	void				decrementGrade( int amount );
+	const std::string	&getName( void ) const;
+	int					getGrade( void ) const;
+	void				incrementGrade( void );
+	void				decrementGrade( void );
 };
-std::ostream&			operator<<(std::ostream& COUT, Bureaucrat &brct);
+std::ostream&			operator<<(std::ostream& COUT, const Bureaucrat &brct);
 
 #endif
