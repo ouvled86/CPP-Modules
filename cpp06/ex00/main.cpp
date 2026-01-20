@@ -6,11 +6,12 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 20:56:08 by ouvled            #+#    #+#             */
-/*   Updated: 2025/08/22 16:31:12 by ouvled           ###   ########.fr       */
+/*   Updated: 2026/01/20 21:44:11 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <iostream>
 
 int main(int ac, char **av)
 {
@@ -20,4 +21,5 @@ int main(int ac, char **av)
 		return (1);
 	}
 	ScalarConverter::convert(av[1]);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:09:22 by ouvled            #+#    #+#             */
-/*   Updated: 2025/08/24 20:09:57 by ouvled           ###   ########.fr       */
+/*   Updated: 2026/01/20 21:55:02 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ Base	*generate(void)
 	static bool	run_flag = false;
 	int			ranval;
 	Base		*ret;
-	// A	one;
-	// B	two;
-	// C	three;
 
 	if (!run_flag)
 	{
@@ -42,13 +39,13 @@ Base	*generate(void)
 		}
 		case 1:
 		{
-			std::cout << "Returning an B class" << std::endl;
+			std::cout << "Returning a B class" << std::endl;
 			ret = new B();
 			break ;
 		}
 		case 2:
 		{
-			std::cout << "Returning an C class" << std::endl;
+			std::cout << "Returning a C class" << std::endl;
 			ret = new C();
 			break ;
 		}
@@ -63,15 +60,25 @@ void	identify(Base *p)
 	C	*three;
 
 	one = dynamic_cast<A *>(p);
-	two = dynamic_cast<B *>(p);
-	three = dynamic_cast<C *>(p);
 	
 	if (one)
+	{
 		std::cout << "The actual type of p is class A!" << std::endl;
-	else if (two)
+		return ;
+	}
+	two = dynamic_cast<B *>(p);
+	if (two)
+	{
 		std::cout << "The actual type of p is class B!" << std::endl;
-	else if (three)
+		return ;
+	}
+	three = dynamic_cast<C *>(p);
+	if (three)
+	{
 		std::cout << "The actual type of p is class C!" << std::endl;
+		return ;
+	}
+	std::cout << "Type is unknown!" << std::endl;
 }
 
 void	identify(Base &p)
@@ -102,4 +109,6 @@ void	identify(Base &p)
 		return ;
 	}
 	catch(const std::exception& e) {}
+	std::cout << "Type is unknown!" << std::endl;
+	return;
 }
