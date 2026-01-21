@@ -1,18 +1,18 @@
 #ifndef SCALAR_CONVERTER_HPP
-#define SCALAR_CONVERTER_HPP
+# define SCALAR_CONVERTER_HPP
 
-#include <string>
+#  include <string>
 
 class ScalarConverter
 {
 private:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter &);
-	ScalarConverter &operator=(const ScalarConverter &);
+	ScalarConverter	&operator=(const ScalarConverter &);
 	~ScalarConverter();
 
 public:
-	static void convert(const char *input);
+	static void		convert(const char *input);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:09:22 by ouvled            #+#    #+#             */
-/*   Updated: 2026/01/20 21:55:02 by ouvled           ###   ########.fr       */
+/*   Updated: 2026/01/21 01:31:39 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ Base	*generate(void)
 
 void	identify(Base *p)
 {
-	A	*one;
-	B	*two;
-	C	*three;
+	A	*one = NULL;
+	B	*two = NULL;
+	C	*three = NULL;
 
 	one = dynamic_cast<A *>(p);
 	

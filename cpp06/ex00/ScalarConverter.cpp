@@ -5,41 +5,41 @@
 #include <cmath>
 #include <climits>
 
-static bool isPrintableChar(int v)
+static bool	isPrintableChar(int v)
 {
 	return v >= 32 && v <= 126;
 }
 
-static bool isSingleNonDigitChar(const std::string &s)
+static bool	isSingleNonDigitChar(const std::string &s)
 {
 	return s.size() == 1 && (s[0] < '0' || s[0] > '9');
 }
 
-static bool isPseudoDouble(const std::string &s)
+static bool	isPseudoDouble(const std::string &s)
 {
 	return s == "nan" || s == "+inf" || s == "-inf" || s == "inf";
 }
 
-static bool isPseudoFloat(const std::string &s)
+static bool	isPseudoFloat(const std::string &s)
 {
 	return s == "nanf" || s == "+inff" || s == "-inff" || s == "inff";
 }
 
-static bool hasFrac(double d)
+static bool	hasFrac(double d)
 {
 	double ip;
 	return std::modf(d, &ip) != 0.0;
 }
 
-struct Parsed
+struct	Parsed
 {
-	bool ok;
-	double d;
+	bool	ok;
+	double	d;
 };
 
-static Parsed parseNumber(const std::string &s)
+static Parsed	parseNumber(const std::string &s)
 {
-	Parsed p;
+	Parsed	p;
 
 	p.ok = false;
 	p.d = 0.0;
@@ -82,9 +82,9 @@ static Parsed parseNumber(const std::string &s)
 		return p;
 	}
 
-	char *end = 0;
-	const char *c = s.c_str();
-	double d = std::strtod(c, &end);
+	char		*end = 0;
+	const char	*c = s.c_str();
+	double		d = std::strtod(c, &end);
 
 	if (end == c)
 		return p;
@@ -114,7 +114,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter &)
 {
 }
 
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &)
+ScalarConverter	&ScalarConverter::operator=(const ScalarConverter &)
 {
 	return *this;
 }
@@ -123,7 +123,7 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
-static void printChar(double d)
+static void	printChar(double d)
 {
 	std::cout << "char: ";
 	if (std::isnan(d) || std::isinf(d))
@@ -131,7 +131,7 @@ static void printChar(double d)
 		std::cout << "impossible\n";
 		return;
 	}
-	int v = static_cast<int>(d);
+	int	v = static_cast<int>(d);
 	if (v < 0 || v > 127)
 	{
 		std::cout << "impossible\n";
@@ -145,7 +145,7 @@ static void printChar(double d)
 	std::cout << "'" << static_cast<char>(v) << "'\n";
 }
 
-static void printInt(double d)
+static void	printInt(double d)
 {
 	std::cout << "int: ";
 	if (std::isnan(d) || std::isinf(d) ||
@@ -157,7 +157,7 @@ static void printInt(double d)
 	std::cout << static_cast<int>(d) << "\n";
 }
 
-static void printFloat(double d, bool integral)
+static void	printFloat(double d, bool integral)
 {
 	std::cout << "float: ";
 	if (std::isnan(d))
@@ -173,7 +173,7 @@ static void printFloat(double d, bool integral)
 			std::cout << "+inff\n";
 		return;
 	}
-	float f = static_cast<float>(d);
+	float	f = static_cast<float>(d);
 	if (integral)
 	{
 		std::cout << std::fixed << std::setprecision(1) << f << "f\n";
@@ -183,7 +183,7 @@ static void printFloat(double d, bool integral)
 		std::cout << f << "f\n";
 }
 
-static void printDouble(double d, bool integral)
+static void	printDouble(double d, bool integral)
 {
 	std::cout << "double: ";
 	if (std::isnan(d))
@@ -212,14 +212,14 @@ static void printDouble(double d, bool integral)
 		std::cout << d << "\n";
 }
 
-void ScalarConverter::convert(const char *input)
+void	ScalarConverter::convert(const char *input)
 {
-	std::string s;
+	std::string	s;
 	if (!input)
 		s = "";
 	else
 		s = input;
-	Parsed p = parseNumber(s);
+	Parsed	p = parseNumber(s);
 
 	if (!p.ok)
 	{
@@ -227,8 +227,8 @@ void ScalarConverter::convert(const char *input)
 		return;
 	}
 
-	double d = p.d;
-	bool integral = !std::isnan(d) && !std::isinf(d) && !hasFrac(d);
+	double	d = p.d;
+	bool	integral = !std::isnan(d) && !std::isinf(d) && !hasFrac(d);
 
 	printChar(d);
 	printInt(d);
