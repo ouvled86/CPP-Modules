@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 19:03:12 by ouvled            #+#    #+#             */
-/*   Updated: 2025/08/26 21:17:09 by ouvled           ###   ########.fr       */
+/*   Updated: 2026/02/02 03:01:35 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ void	swap(T &a, T &b)
 template < typename T >
 T const	&min(T const &a, T const &b)
 {
-	return ((a >= b) ? b : a);
+	if (a >= b)
+		return b;
+	return a;
 }
 
 template < typename T >
 T const	&max(T const &a, T const &b)
 {
-	return ((b > a) ? b : a);
+	if (b > a)
+		return b;
+	return a;
 }
 
 #endif

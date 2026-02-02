@@ -6,7 +6,7 @@
 /*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:12:08 by ouvled            #+#    #+#             */
-/*   Updated: 2025/08/27 19:36:25 by ouvled           ###   ########.fr       */
+/*   Updated: 2026/02/02 04:50:59 by ouvled           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	toupper(char &e) { e -= 32; }
 int main(void)
 {
 	int	arr[5] = {86, 86, 86, 86, 86};
-	char	meow[] = "meow meow nigga";
+	char	meow[] = "big meow in the house";
 	
 	iter(arr, 5, print_element);
 	std::cout << std::endl;
@@ -37,6 +37,6 @@ int main(void)
 	iter(arr + 4, 1, increment_element);
 	iter(arr, 5, print_element);
 	std::cout << std::endl;
-	iter(meow, 15, toupper);
-	iter(meow, 15, print_element);
+	iter(meow, 21, toupper);
+	iter(meow, 21, print_element);
 }
