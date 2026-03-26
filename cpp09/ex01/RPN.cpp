@@ -1,16 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RPN.cpp                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 17:43:04 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/10 20:39:21 by ouvled           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "RPN.hpp"
+#include <iostream>
+#include <cstdlib>
 
 // Default constructor
 RPN::RPN(void)
@@ -96,10 +86,7 @@ bool	badInput(std::string &input)
 			return (true);
 		it++;
 		if (it != input.end() && *it != ' ')
-		{
-			std::cout << *it << std::endl;
 			return (true);
-		}
 		if (it == input.end())
 			break ;
 	}

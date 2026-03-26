@@ -1,23 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 16:29:46 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/17 21:29:37 by ouvled           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
-# include <iostream>
+# include <string>
 # include <deque>
 # include <list>
-// # include <utility> 
-# include <climits>
-# include <cstdlib>
 
 class PmergeMe
 {
@@ -42,7 +27,7 @@ std::string			mergeInput(char **av, int count);
 bool				badInput(std::string::iterator it, std::string::iterator it2);
 void				parseInput(std::deque<int> &cnt, std::string::iterator it, std::string::iterator it2, std::string::iterator ite);
 void				sortDeque(std::deque<int> &container);
-void				sortList(std::list<int> container);
+void				sortList(std::list<int> &container);
 
 #endif
 

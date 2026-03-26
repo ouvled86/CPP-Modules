@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 16:55:36 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/10 20:41:05 by ouvled           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "BitcoinExchange.hpp"
+#include <iostream>
 #include <string>
 #include <cstdlib>
-#include <iomanip>
 
 // Default constructor
 BitcoinExchange::BitcoinExchange(void)
@@ -65,7 +53,9 @@ void	BitcoinExchange::printData(void) const
 		else
 		{
 			it2 = this->_data.lower_bound((*it).first);
-			if (it2 != this->_data.begin())
+			if (it2 != this->_data.end() && it2->first == (*it).first)
+				std::cout << (*it).first << " => " << (*it).second << " = " << (*it).second * (*it2).second << std::endl;
+			else if (it2 != this->_data.begin())
 			{
 				it2--;
 				std::cout << (*it).first << " => " << (*it).second << " = " << (*it).second * (*it2).second << std::endl;
@@ -116,8 +106,8 @@ std::vector<std::pair<std::string, float> >	parseInput(std::ifstream &input)
 		while (*it && ((*it >= '0' && *it <= '9') || *it == '-') && *it != '|')
 			it++;
 		p.first = std::string(buff.begin(), it);
-		if (*it)
-			p.second = atof(std::string(it + 2, buff.end()).c_str());
+		if (*it == ' ' && *(it + 1) == '|' && *(it + 2) == ' ')
+			p.second = atof(std::string(it + 3, buff.end()).c_str());
 		if (p.second > 1000)
 			p.first = "BIG_VALUE";
 		else if (p.second < 0)
@@ -175,7 +165,8 @@ bool	badFormat(std::string::iterator s)
 			return (true);
 		s++;
 	}
-
+	if (day > 31 || month > 12 || year > 2026 || year < 2009)
+		return (true);
 	return (false);
 }
 

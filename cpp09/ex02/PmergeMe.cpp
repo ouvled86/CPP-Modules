@@ -1,16 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 16:30:08 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/18 01:07:34 by ouvled           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "PmergeMe.hpp"
+#include <algorithm>
+#include <climits>
+#include <iostream>
 
 // Default constructor
 PmergeMe::PmergeMe(void)
@@ -39,15 +30,6 @@ std::deque<std::pair<int, int> >	breakSortDeque(std::deque<int> cnt1, size_t siz
 	return (pairs);
 }
 
-std::deque<int>	extractLarger(std::deque<std::pair<int, int> > pairs)
-{
-	std::deque<int>	ret;
-
-	for (std::deque<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
-		ret.push_back((*it).second);
-	return (ret);
-}
-
 std::deque<int>	genJacobsthal(size_t size)
 {
 	std::deque<int>	ret;
@@ -62,30 +44,14 @@ std::deque<int>	genJacobsthal(size_t size)
 	return (ret);
 }
 
-void	insertInMc(std::deque<int> &mainChain, int element)
-{
-	size_t	min = 0;
-	size_t	max = mainChain.size();
-
-	while (min < max)
-	{
-		size_t	mid = min + (max - min) / 2;
-		if (mainChain[mid] < element)
-			min = mid + 1;
-		else
-			max = mid;
-	}
-	mainChain.insert(mainChain.begin() + min, element);
-}
-
-void	binaryInsert(std::deque<int> &mainChain, std::deque<std::pair<int, int> > pairs)
+void	binaryInsertDeque(std::deque<int> &mainChain, std::deque<std::pair<int, int> > pairs)
 {
 	size_t			pairsSize = pairs.size();
 	std::deque<int>	jacobsthalSequence = genJacobsthal(pairsSize);
 	
 	size_t			i = 0;
-	if (pairs.size())
-		insertInMc(mainChain, pairs[0].first);
+	if (pairsSize > 0)
+		mainChain.insert(mainChain.begin(), pairs[0].first);
 		
 	while (i < jacobsthalSequence.size())
 	{
@@ -97,43 +63,146 @@ void	binaryInsert(std::deque<int> &mainChain, std::deque<std::pair<int, int> > p
 		size_t max = jacobsthalSequence[i];
 		for (size_t k = max; k >= min; k--)
 		{
-			if (k < pairsSize)
-				insertInMc(mainChain, pairs[k].first);
+			if (k < pairsSize) {
+				std::deque<int>::iterator bound = std::find(mainChain.begin(), mainChain.end(), pairs[k].second);
+				std::deque<int>::iterator insert_pos = std::lower_bound(mainChain.begin(), bound, pairs[k].first);
+				mainChain.insert(insert_pos, pairs[k].first);
+			}
 		}
 		i++;
 	}
 }
 
-// This function sorts an std::deque<int>, size n
-// It uses Ford-Johnson algorithm
-// First off, we break the initial sequence into pairs, size of n/2
-// Then we sort them using n/2 comprasions
-// After that we create a list of the larger elements and sort them recursively
 void	sortDeque(std::deque<int> &container)
+{
+	if (container.size() <= 1) 
+		return ;
+
+	std::deque<std::pair<int, int> >	pairs = breakSortDeque(container, container.size());
+	std::deque<int>						largerElements;
+	for (std::deque<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+		largerElements.push_back((*it).second);
+
+	sortDeque(largerElements);
+
+	std::deque<std::pair<int, int> > sortedPairs;
+	for (size_t i = 0; i < largerElements.size(); ++i)
+	{
+		for (std::deque<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
+		{
+			if (it->second == largerElements[i])
+			{
+				sortedPairs.push_back(*it);
+				pairs.erase(it);
+				break;
+			}
+		}
+	}
+	pairs = sortedPairs;
+
+	std::deque<int>						mainChain = largerElements;
+	binaryInsertDeque(mainChain, pairs);
+
+	if (container.size() % 2 != 0) {
+		std::deque<int>::iterator insert_pos = std::lower_bound(mainChain.begin(), mainChain.end(), container.back());
+		mainChain.insert(insert_pos, container.back());
+	}
+
+	container.clear();
+	container = mainChain;
+}
+
+std::list<std::pair<int, int> >	breakSortList(const std::list<int>& cnt1, size_t size)
+{
+	std::list<std::pair<int, int> >	pairs;
+	std::list<int>::const_iterator it = cnt1.begin();
+
+	for (size_t i = 0; i < size - 1; i += 2) {
+		int first = *it;
+		it++;
+		int second = *it;
+		it++;
+		if (first > second)
+			std::swap(first, second);
+		pairs.push_back(std::make_pair(first, second));
+	}
+	return (pairs);
+}
+
+
+
+void	binaryInsertList(std::list<int> &mainChain, std::list<std::pair<int, int> >& pairs)
+{
+	size_t			pairsSize = pairs.size();
+	std::deque<int>	jacobsthalSequence = genJacobsthal(pairsSize);
+	
+	size_t			i = 0;
+	if (pairsSize > 0)
+		mainChain.insert(mainChain.begin(), pairs.front().first);
+		
+	while (i < jacobsthalSequence.size())
+	{
+		size_t	min;
+		if (i != 0)
+			min = jacobsthalSequence[i - 1] + 1;
+		else
+			min = 1;
+		size_t max = jacobsthalSequence[i];
+		for (size_t k = max; k >= min; k--)
+		{
+			if (k < pairsSize) {
+				std::list<std::pair<int, int> >::iterator it = pairs.begin();
+				std::advance(it, k);
+				std::list<int>::iterator bound = std::find(mainChain.begin(), mainChain.end(), it->second);
+				std::list<int>::iterator insert_pos = std::lower_bound(mainChain.begin(), bound, it->first);
+				mainChain.insert(insert_pos, it->first);
+			}
+		}
+		i++;
+	}
+}
+
+void	sortList(std::list<int> &container)
 {
 	if (container.size() <= 1) return ;
 
-	std::deque<std::pair<int, int> >	pairs = breakSortDeque(container, container.size());
-	std::deque<int>						largerElements = extractLarger(pairs);
+	std::list<std::pair<int, int> >	pairs = breakSortList(container, container.size());
+	std::list<int>						largerElements;
+	for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+		largerElements.push_back((*it).second);
+
+	sortList(largerElements);
+
+	std::list<std::pair<int, int> > sortedPairs;
+	for (std::list<int>::iterator lit = largerElements.begin(); lit != largerElements.end(); ++lit)
+	{
+		for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it)
+		{
+			if (it->second == *lit)
+			{
+				sortedPairs.push_back(*it);
+				pairs.erase(it);
+				break;
+			}
+		}
+	}
+	pairs = sortedPairs;
+	std::cout << "Pairs: " << std::endl;
+	for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+		std::cout << it->first << " " << it->second << std::endl;
+
+	std::list<int>						mainChain = largerElements;
+	binaryInsertList(mainChain, pairs);
 
 	if (container.size() % 2 != 0)
-		largerElements.push_back(container[container.size() - 1]);
-	sortDeque(largerElements);
-	std::deque<int>						mainChain = largerElements;
-	std::cout << "Main chain is: ";
-	for (size_t i = 0; i < mainChain.size(); i++)
-		std::cout << mainChain[i] << " ";
-	std::cout << std::endl;
-	binaryInsert(mainChain, pairs);
+	{
+		std::list<int>::iterator insert_pos = std::lower_bound(mainChain.begin(), mainChain.end(), container.back());
+		mainChain.insert(insert_pos, container.back());
+	}
+
 	container.clear();
 	container = mainChain;
-
 }
-
-// void	sortList(std::list<int> container)
-// {
-	
-// }
 
 // Full constructor
 PmergeMe::PmergeMe(std::string &input)
@@ -146,19 +215,14 @@ PmergeMe::PmergeMe(std::string &input)
 	clock_t	start = clock();
 	std::copy(this->_cnt1.begin(), this->_cnt1.end(), std::back_inserter(this->_cnt2));
 	sortDeque(this->_cnt2);
-	std::cout << "-> largerElements size: " << _cnt2.size() << std::endl;
-	for (size_t i = 0; i < _cnt2.size(); i++)
-		std::cout << "Position at: " << i << " is: " << _cnt2[i] << std::endl;
 	clock_t	end = clock();
 	this->_stopWatchDeque = static_cast<double>(end - start);
 
-	std::cout << "Time taken to sort std::deque<int> in microseconds is: " << this->_stopWatchDeque << std::endl;
-
-	// start = clock();
-	// std::copy(this->_cnt1.begin(), this->_cnt1.end(), std::back_inserter(this->_cnt3));
-	// sortList(this->_cnt3);
-	// end = clock();
-	// this->_stopWatchList = static_cast<double>(end - start);
+	start = clock();
+	std::copy(this->_cnt1.begin(), this->_cnt1.end(), std::back_inserter(this->_cnt3));
+	sortList(this->_cnt3);
+	end = clock();
+	this->_stopWatchList = static_cast<double>(end - start);
 
 	return ;
 }
@@ -187,16 +251,30 @@ void	PmergeMe::printInfo(void)
 {
 	std::deque<int>::iterator it = this->_cnt1.begin();
 	std::deque<int>::iterator ite = this->_cnt1.end();
-	std::cout << "Sequence before sorting: ";
-	while (it != ite - 1)
+	std::cout << "Before: ";
+	int count = 0;
+	while (it != ite && count < 5)
+	{
 		std::cout << *it << " ";
-	std::cout << *it << std::endl;
-	std::cout << "Sequence after sorting: ";
+		it++;
+		count++;
+	}
+	if (it != ite) std::cout << "[...]";
+	std::cout << std::endl;
+	
+	std::cout << "After: ";
 	it = this->_cnt2.begin();
 	ite = this->_cnt2.end();
-	while (it != ite - 1)
+	count = 0;
+	while (it != ite && count < 5)
+	{
 		std::cout << *it << " ";
-	std::cout << *it << std::endl;
+		it++;
+		count++;
+	}
+	if (it != ite)
+		std::cout << "[...]";
+	std::cout << std::endl;
 	std::cout << "Time to process a range of " << this->_cnt1.size() << " elements with std::deque : " << this->_stopWatchDeque << " us" << std::endl;
 	std::cout << "Time to process a range of " << this->_cnt1.size() << " elements with std::list : " << this->_stopWatchList << " us" << std::endl;
 }

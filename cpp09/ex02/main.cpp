@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <iostream>
 
 int main(int ac, char **av)
 {
@@ -21,6 +22,5 @@ int main(int ac, char **av)
 	}
 	std::string	input = mergeInput(av, ac);
 	PmergeMe	PM(input);
-	// PM.sortDeque();
-	// PM.printInfo();
+	PM.printInfo();
 }

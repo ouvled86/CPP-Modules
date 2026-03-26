@@ -1,18 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 16:55:40 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/09 20:09:45 by ouvled           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
-# include <iostream>
 # include <fstream>
 # include <vector>
 # include <map>

@@ -1,21 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ouvled <ouvled@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 16:55:43 by ouvled            #+#    #+#             */
-/*   Updated: 2025/09/10 17:48:03 by ouvled           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "BitcoinExchange.hpp"
 #include <fstream>
+#include <iostream>
 
 int main(int ac, char **av)
 {
-	if (ac != 2) {
+	if (ac < 2) {
 		std::cerr << "Error: bad usage. (./btc \"<FILE_NAME>\")" << std::endl;
 		return 100;
 	}
